@@ -38,7 +38,7 @@ env:
   BUILD_DEPENDS:  "binutils bzip2 diff find flex gawk gcc-6+ getopt grep install libc-dev libz-dev make4.1+ perl python3.6+ rsync subversion unzip which"
   # FEEDS_CONF and CONFIG_FILE is the name of your own config files for compiling, you should upload 
   # these files into the root directory of your workflow repo.
-  FEEDS_CONF: example-feeds.conf.default
+  FEEDS_CONF: gffeeds.conf.default
   CONFIG_FILE: .config
   kernel_CONFIG_FILE: config-5.10
   # DIY_P1_SH is the name of extra bash script you want to execute before feeds update&install.
