@@ -102,9 +102,6 @@ jobs:
     - name: Load custom kernelconfiguration
       run: |
         [ -e $kernel_CONFIG_FILE ] && mv $kernel_CONFIG_FILE openwrt/target/linux/x86/config-5.10
-        chmod +x $kernel_CONFIG_FILE
-        cd openwrt
-        $GITHUB_WORKSPACE/$kernel_CONFIG_FILE
 
     - name: Compile the firmware
       id: compile
