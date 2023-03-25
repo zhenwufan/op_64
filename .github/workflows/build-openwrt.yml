@@ -24,6 +24,7 @@ env:
   REPO_BRANCH: 22.03
   FEEDS_CONF: feeds.conf.default
   CONFIG_FILE: .config
+  kernel_CONFIG_FILE: config-5.10
   DIY_P1_SH: diy-part1.sh
   DIY_P2_SH: diy-part2.sh
   UPLOAD_BIN_DIR: false
@@ -97,6 +98,13 @@ jobs:
         make download -j8
         find dl -size -1024c -exec ls -l {} \;
         find dl -size -1024c -exec rm -f {} \;
+
+    - name: Load custom kernelconfiguration
+      run: |
+        [ -e $kernel_CONFIG_FILE ] && mv $kernel_CONFIG_FILE openwrt/target/linux/x86/config-5.10
+        chmod +x $kernel_CONFIG_FILE
+        cd openwrt
+        $GITHUB_WORKSPACE/$kernel_CONFIG_FILE
 
     - name: Compile the firmware
       id: compile
