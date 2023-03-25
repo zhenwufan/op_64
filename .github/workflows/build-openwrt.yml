@@ -54,31 +54,10 @@ jobs:
     outputs:
       cache-hit: ${{ steps.cache-hash.outputs.cache-hit }}
 
-    steps:
-      - name: Get Commit Hash
-        id: get-hash
-        run: |
-          git clone --depth 1 $REPO_URL -b $REPO_BRANCH .
-          echo "commit-hash=$(git rev-parse HEAD)" >> $GITHUB_OUTPUT
-      - name: Compare Commit Hash
-        id: cache-hash
-        uses: actions/cache@main
-        with:
-          path: .${{ env.REPO_NAME }}-${{ env.REPO_BRANCH }}-commit-hash
-          key: HEAD-${{ steps.get-hash.outputs.commit-hash }}
-
-      - name: Save New Commit Hash
-        if: steps.cache-hash.outputs.cache-hit != 'true'
-        run: |
-          echo ${{ steps.get-hash.outputs.commit-hash }} | 
-            tee .$REPO_NAME-$REPO_BRANCH-commit-hash
   build:
     name: Build firmware
     runs-on: ubuntu-latest
-    needs: check
-    permissions:
-      contents: write
-    if: needs.check.outputs.cache-hit != 'true' || github.event.inputs.force-build == 'true'
+
 
     steps:
     - name: Checkout
