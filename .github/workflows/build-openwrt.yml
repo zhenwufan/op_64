@@ -48,16 +48,9 @@ env:
   TIME_ZONE: Asia/Shanghai
 
 jobs:
-  check:
-    name: Check for source code updates
-    runs-on: ubuntu-latest
-    outputs:
-      cache-hit: ${{ steps.cache-hash.outputs.cache-hit }}
-
   build:
     name: Build firmware
     runs-on: ubuntu-latest
-
 
     steps:
     - name: Checkout
