@@ -147,9 +147,9 @@ jobs:
           make download -j8
           find dl -size -1024c -exec ls -l {} \;
           find dl -size -1024c -exec rm -f {} \;
-          
+
       - name: Load custom kernelconfiguration
-      run: |
+        run: |
         [ -e $kernel_CONFIG_FILE ] && mv $kernel_CONFIG_FILE openwrt/target/linux/x86/config-5.15
         
       - name: Compile the firmware
