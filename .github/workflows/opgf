@@ -40,7 +40,7 @@ env:
   # these files into the root directory of your workflow repo.
   FEEDS_CONF: gffeeds.conf.default
   CONFIG_FILE: .config
-  kernel_CONFIG_FILE: config-5.10
+  kernel_CONFIG_FILE: config-5.15
   # DIY_P1_SH is the name of extra bash script you want to execute before feeds update&install.
   # DIY_P1_SH is the name of extra bash script you want to execute after feeds update&install.
   # You can modify the initial settings of your firmware through these two scripts. If this is what you 
@@ -150,7 +150,7 @@ jobs:
           
       - name: Load custom kernelconfiguration
       run: |
-        [ -e $kernel_CONFIG_FILE ] && mv $kernel_CONFIG_FILE openwrt/target/linux/x86/config-5.10
+        [ -e $kernel_CONFIG_FILE ] && mv $kernel_CONFIG_FILE openwrt/target/linux/x86/config-5.15
         
       - name: Compile the firmware
         id: compile
