@@ -8,7 +8,7 @@
 # Description: Build OpenWrt using GitHub Actions
 #
 
-name: Build gf
+name: Build OpenWrt64
 
 on:
   repository_dispatch:
@@ -20,11 +20,14 @@ on:
         default: 'false'
 
 env:
+  REPO_NAME: openwrt
   REPO_URL: https://github.com/openwrt/openwrt
   REPO_BRANCH: master
   FEEDS_CONF: feeds.conf.default
   CONFIG_FILE: .config
   kernel_CONFIG_FILE: config-5.15
+  DIY_P1_SH: diy-part1.sh
+  DIY_P2_SH: diy-part2.sh
   UPLOAD_BIN_DIR: false
   UPLOAD_FIRMWARE: true
   UPLOAD_COWTRANSFER: false
@@ -96,7 +99,7 @@ jobs:
     - name: Load custom kernelconfiguration
       run: |
         [ -e $kernel_CONFIG_FILE ] && mv $kernel_CONFIG_FILE openwrt/target/linux/x86/config-5.15      
-   
+         
     - name: Compile the firmware
       id: compile
       run: |
