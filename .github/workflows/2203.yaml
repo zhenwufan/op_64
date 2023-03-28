@@ -151,7 +151,7 @@ jobs:
           
       - name: Load custom kernelconfiguration
         run: |
-        [ -e $kernel_CONFIG_FILE ] && mv $kernel_CONFIG_FILE openwrt/target/linux/x86/config-5.15
+          [ -e $kernel_CONFIG_FILE ] && mv $kernel_CONFIG_FILE openwrt/target/linux/x86/config-5.15
         
       - name: Compile the firmware
         id: compile
